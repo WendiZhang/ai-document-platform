@@ -198,12 +198,6 @@ def build_retrieval_query(
     question: str,
     recent_messages: list[ChatMessage],
 ) -> str:
-    """
-    Combine recent conversation context with the current question.
-
-    This helps semantic search understand follow-up references such
-    as "her", "that project", or "the second skill".
-    """
     history_text = "\n".join(
         f"{message.role}: {message.content}"
         for message in recent_messages
@@ -350,7 +344,6 @@ def chat_with_documents(
         db=db,
     )
 
-    # Load recent messages before saving the current question.
     recent_messages = get_recent_chat_messages(
         session_id=chat_session.id,
         db=db,

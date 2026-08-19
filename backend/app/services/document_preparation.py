@@ -39,12 +39,6 @@ def prepare_document_in_background(
     document_id: UUID,
     owner_id: UUID,
 ) -> None:
-    """
-    Extract, chunk, and embed a document outside the HTTP request.
-
-    A new database session is created because the request-scoped
-    session is no longer available after the response is returned.
-    """
     db = SessionLocal()
 
     try:
@@ -58,7 +52,6 @@ def prepare_document_in_background(
         if document is None:
             return
 
-        # Step 1: extract text
         document.status = "processing"
         document.processing_error = None
         db.commit()
@@ -82,7 +75,6 @@ def prepare_document_in_background(
         document.status = "chunking"
         db.commit()
 
-        # Step 2: create chunks
         try:
             text_chunks = split_text_into_chunks(
                 text=extracted_text,
@@ -122,7 +114,6 @@ def prepare_document_in_background(
         db.flush()
         db.commit()
 
-        # Step 3: generate embeddings
         try:
             for chunk_record in chunk_records:
                 chunk_record.embedding = generate_embedding(

@@ -11,7 +11,7 @@
     sans-serif;
 
   color: #172033;
-  background: #f4f7fb;
+  background: #fff8f5;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
 }
@@ -29,8 +29,57 @@ body {
   min-width: 320px;
   min-height: 100vh;
   margin: 0;
-  background: #f4f7fb;
+  background: #fff8f5;
 }
+
+.auth-background {
+  background:
+    radial-gradient(ellipse at 18% 16%, rgb(255 177 153 / 0.72) 0 24%, transparent 52%),
+    radial-gradient(ellipse at 88% 38%, rgb(205 91 79 / 0.45) 0 18%, transparent 48%),
+    radial-gradient(ellipse at 18% 84%, rgb(255 190 112 / 0.9) 0 25%, transparent 57%),
+    linear-gradient(145deg, #ff747b 0%, #ff9b78 42%, #e89155 100%);
+  position: relative;
+}
+
+.auth-background::before,
+.auth-background::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  transform: rotate(-24deg);
+}
+
+.auth-background::before {
+  width: 125%;
+  height: 58%;
+  left: -38%;
+  top: -8%;
+  background: rgb(255 224 205 / 0.18);
+}
+
+.auth-background::after {
+  width: 120%;
+  height: 52%;
+  left: -48%;
+  bottom: -10%;
+  background: rgb(255 235 198 / 0.16);
+}
+
+/* Warm coral-orange brand palette used throughout the interface. */
+.bg-blue-600 { background-color: #ff5f6d !important; }
+.hover\:bg-blue-700:hover { background-color: #f0445b !important; }
+.text-blue-600 { color: #f0445b !important; }
+.hover\:text-blue-700:hover { color: #d93650 !important; }
+.text-blue-700 { color: #d93650 !important; }
+.bg-blue-50 { background-color: #fff0ed !important; }
+.border-blue-500 { border-color: #ff7a59 !important; }
+.focus\:border-blue-500:focus { border-color: #ff7a59 !important; }
+.focus\:ring-blue-100:focus { --tw-ring-color: rgb(255 122 89 / 0.2) !important; }
+.shadow-blue-200 { --tw-shadow-color: rgb(255 95 109 / 0.25) !important; }
+.bg-indigo-500 { background-color: #ff8a65 !important; }
+.bg-indigo-600 { background-color: #ff7a59 !important; }
+.text-indigo-600 { color: #f0445b !important; }
 
 button,
 input,

@@ -43,9 +43,9 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-slate-950 px-6 py-12">
-      <div className="pointer-events-none absolute -left-32 -top-32 h-96 w-96 rounded-full bg-blue-600/30 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-40 -right-20 h-[28rem] w-[28rem] rounded-full bg-indigo-500/25 blur-3xl" />
+    <main className="auth-background relative flex min-h-screen items-center justify-center overflow-hidden px-6 py-12">
+      <div className="pointer-events-none absolute -left-32 -top-32 h-96 w-96 rounded-full bg-[#ffb199]/35 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-40 -right-20 h-[28rem] w-[28rem] rounded-full bg-[#ffb6d2]/35 blur-3xl" />
 
       <div className="relative w-full max-w-md rounded-[2rem] border border-white/15 bg-white/[0.97] p-8 shadow-2xl shadow-black/30 sm:p-10">
         <p className="text-sm font-semibold uppercase tracking-[0.18em] text-blue-600">

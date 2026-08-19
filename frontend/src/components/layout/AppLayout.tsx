@@ -40,10 +40,10 @@ export default function AppLayout() {
     ].join(" ");
 
   return (
-    <div className="min-h-screen bg-[#f6f8fc] md:flex">
+    <div className="min-h-screen bg-[#fff8f5] md:flex">
       <aside className="border-b border-slate-200/80 bg-white md:sticky md:top-0 md:min-h-screen md:w-72 md:border-b-0 md:border-r">
         <div className="flex items-center gap-3 p-6">
-          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-200">
+          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-[#ff7a59] via-[#ff5f6d] to-[#ff2f7d] text-white shadow-lg shadow-orange-200">
             <Sparkles size={19} />
           </div>
           <div>
@@ -110,7 +110,7 @@ export default function AppLayout() {
         </div>
       </aside>
 
-      <main className="min-w-0 flex-1 bg-[radial-gradient(circle_at_top_right,_rgba(219,234,254,0.6),_transparent_30rem)]">
+      <main className="min-w-0 flex-1 bg-[radial-gradient(circle_at_top_right,_rgba(255,224,214,0.7),_transparent_30rem)]">
         <Outlet />
       </main>
     </div>

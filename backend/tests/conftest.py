@@ -1,7 +1,5 @@
 import os
 
-# IMPORTANT:
-# Set test environment variables before importing the app.
 os.environ["APP_ENV"] = "test"
 
 os.environ[

@@ -98,9 +98,6 @@ export default function ChatPage() {
   ]);
 
   useEffect(() => {
-    // Only follow the conversation while an answer is streaming. Keeping
-    // this disabled for ordinary query updates prevents deleting a chat or
-    // switching sessions from unexpectedly jumping the page to the bottom.
     if (!isStreaming) {
       return;
     }

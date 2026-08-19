@@ -95,25 +95,31 @@ Built with **FastAPI**, **React**, **PostgreSQL + pgvector**, and **OpenAI**.
 
 ## Login
 
-> *(Add screenshot later)*
+![Login](./screenshots/login.png)
+
+---
+
+## Register
+
+![Register](./screenshots/register.png)
 
 ---
 
 ## Dashboard
 
-> *(Add screenshot later)*
+![Dashboard](./screenshots/dashboard.png)
 
 ---
 
 ## Documents
 
-> *(Add screenshot later)*
+![Documents](./screenshots/documents.png)
 
 ---
 
 ## AI Chat
 
-> *(Add screenshot later)*
+![AI Chat](./screenshots/ai-chat.png)
 
 ---
 
