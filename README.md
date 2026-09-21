@@ -1,349 +1,398 @@
-#  AI Document Intelligence Platform
+# AI Document Intelligence Platform
 
-An AI-powered document analysis platform that allows users to upload PDF and DOCX files, automatically extract and process text, generate vector embeddings, perform semantic search, and chat with documents using Retrieval-Augmented Generation (RAG).
+A full-stack document intelligence application built with React, TypeScript, FastAPI, PostgreSQL, pgvector, and OpenAI.
 
-Built with **FastAPI**, **React**, **PostgreSQL + pgvector**, and **OpenAI**.
+Users can upload PDF and DOCX files, process documents into vector embeddings, search document content, and ask questions using Retrieval-Augmented Generation (RAG).
 
----
+The application includes JWT authentication, document management, semantic search, multi-turn AI chat, streaming responses, and user-specific data access.
 
-##  Features
+## Live Demo
+
+Application: http://16.54.70.41
+
+API Documentation: http://16.54.70.41/docs
+
+The current deployment uses HTTP. A custom domain and HTTPS are planned.
+
+## Features
 
 ### Authentication
-- JWT authentication
+
 - User registration and login
+- Password hashing
+- JWT authentication
 - Protected API endpoints
-- Secure password hashing
+- Token expiration
+- User-specific data access
 
 ### Document Management
-- Upload PDF and DOCX documents
-- Secure file storage
-- Document ownership protection
-- Delete documents
-- Processing status tracking
 
-### AI Processing Pipeline
-- Extract text from uploaded documents
-- Intelligent document chunking
-- Generate OpenAI embeddings
-- Store vectors in PostgreSQL using pgvector
-- Semantic similarity search
+- Upload PDF and DOCX files
+- File type and file structure validation
+- Upload size limits
+- Text extraction
+- Document chunking
+- OpenAI embeddings
+- Document processing status
+- Delete documents
+
+### Search and RAG
+
+- PostgreSQL with pgvector
+- Semantic vector search
+- Cosine similarity
+- Retrieval-Augmented Generation
+- Search results limited to the authenticated user's documents
+- Source references in AI responses
 
 ### AI Chat
-- Retrieval-Augmented Generation (RAG)
-- Streaming AI responses
-- Multi-conversation chat sessions
+
+- Multiple chat sessions
 - Conversation history
-- Source citations for every answer
+- Follow-up questions
+- Streaming AI responses
 - Filter chat by document
+- Saved user and assistant messages
+
+## Tech Stack
 
 ### Frontend
-- Responsive React + TypeScript interface
-- Dashboard
-- Document management
-- AI chat interface
-- Live streaming responses
-- Modern Tailwind CSS UI
-
-### Backend
-- FastAPI REST API
-- SQLAlchemy ORM
-- Alembic database migrations
-- PostgreSQL
-- pgvector vector database
-- Comprehensive backend testing with Pytest
-
----
-
-#  Architecture
-
-```text
-                React + TypeScript
-                        │
-                        ▼
-                  FastAPI Backend
-                        │
-         JWT Authentication & Authorization
-                        │
-                        ▼
-              Upload PDF / DOCX Files
-                        │
-                        ▼
-                Document Text Extraction
-                        │
-                        ▼
-                 Intelligent Chunking
-                        │
-                        ▼
-          OpenAI Embedding Generation
-                        │
-                        ▼
-           PostgreSQL + pgvector Storage
-                        │
-                        ▼
-             Semantic Vector Search
-                        │
-                        ▼
-          Retrieval-Augmented Generation
-                        │
-                        ▼
-           Streaming AI Responses
-```
-
----
-
-#  Screenshots
-
-## Login
-
-![Login](./screenshots/login.png)
-
----
-
-## Register
-
-![Register](./screenshots/register.png)
-
----
-
-## Dashboard
-
-![Dashboard](./screenshots/dashboard.png)
-
----
-
-## Documents
-
-![Documents](./screenshots/documents.png)
-
----
-
-## AI Chat
-
-![AI Chat](./screenshots/ai-chat.png)
-
----
-
-#  Tech Stack
-
-## Frontend
 
 - React
 - TypeScript
+- Vite
 - React Router
 - React Query
 - Axios
 - Tailwind CSS
-- Lucide Icons
 
-## Backend
+### Backend
 
+- Python
 - FastAPI
 - SQLAlchemy
 - Alembic
+- Pydantic
+- JWT authentication
+- Pytest
+
+### AI and Database
+
+- OpenAI API
+- OpenAI embeddings
+- Retrieval-Augmented Generation
 - PostgreSQL
 - pgvector
-- Pydantic v2
-- JWT Authentication
+- Semantic search
 
-## AI
+### Deployment
 
-- OpenAI GPT
-- OpenAI Embeddings
-- Retrieval-Augmented Generation (RAG)
-- Semantic Search
+- AWS EC2
+- Docker
+- Docker Compose
+- Nginx
+- GitHub Actions
+- AWS Systems Manager
+- CloudWatch
+- Amazon S3
 
-## Testing
-
-- Pytest
-- FastAPI TestClient
-
----
-
-#  Project Structure
+## Architecture
 
 ```text
-backend/
+AI Document Intelligence Platform
+├── Frontend
+│   ├── React
+│   ├── TypeScript
+│   └── Tailwind CSS
 │
-├── app/
-│   ├── api/
-│   ├── models/
-│   ├── schemas/
-│   ├── services/
-│   ├── core/
-│   └── main.py
+├── Backend
+│   ├── FastAPI
+│   ├── JWT authentication
+│   ├── SQLAlchemy
+│   └── Alembic
 │
-├── alembic/
-├── tests/
-└── requirements.txt
-
-frontend/
+├── Document Processing
+│   ├── PDF / DOCX text extraction
+│   ├── Text chunking
+│   ├── OpenAI embeddings
+│   └── Semantic search
 │
-├── src/
-│   ├── pages/
-│   ├── components/
-│   ├── hooks/
-│   ├── api/
-│   └── types/
+├── AI
+│   ├── Retrieval-Augmented Generation
+│   ├── Multi-turn chat
+│   └── Streaming responses
 │
-└── package.json
+└── Database
+    ├── PostgreSQL
+    └── pgvector
 ```
 
----
+## Production Setup
 
-#  Installation
+```text
+AWS EC2
+├── Nginx
+│   ├── React frontend
+│   └── Reverse proxy for /api
+│
+├── Docker
+│   ├── FastAPI backend
+│   └── PostgreSQL + pgvector
+│
+├── Monitoring
+│   ├── CloudWatch
+│   └── SNS alerts
+│
+└── Backups
+    ├── Daily PostgreSQL backup
+    ├── Amazon S3
+    └── 30-day retention
+```
 
-## Clone
+## CI/CD
+
+GitHub Actions runs automatically when changes are pushed to `main`.
+
+The workflow:
+
+- Runs backend tests
+- Starts PostgreSQL and pgvector for testing
+- Builds the frontend
+- Authenticates to AWS using OIDC
+- Deploys to EC2 through AWS Systems Manager
+- Rebuilds the Docker services
+- Runs Alembic migrations
+- Checks backend health
+- Builds and deploys the frontend
+- Reloads Nginx
+
+Production deployments do not require long-lived AWS access keys in GitHub.
+
+## Screenshots
+
+### Login
+
+![Login](./screenshots/login.png)
+
+### Register
+
+![Register](./screenshots/register.png)
+
+### Dashboard
+
+![Dashboard](./screenshots/dashboard.png)
+
+### Documents
+
+![Documents](./screenshots/documents.png)
+
+### AI Chat
+
+![AI Chat](./screenshots/ai-chat.png)
+
+## Project Structure
+
+```text
+ai-document-platform/
+├── backend/
+│   ├── app/
+│   │   ├── api/
+│   │   ├── core/
+│   │   ├── models/
+│   │   ├── schemas/
+│   │   ├── services/
+│   │   └── main.py
+│   ├── alembic/
+│   ├── tests/
+│   ├── Dockerfile
+│   └── requirements.txt
+│
+├── frontend/
+│   ├── src/
+│   │   ├── api/
+│   │   ├── components/
+│   │   ├── hooks/
+│   │   ├── pages/
+│   │   └── types/
+│   └── package.json
+│
+├── .github/
+│   └── workflows/
+│       └── ci.yml
+│
+├── docker-compose.yml
+└── README.md
+```
+
+## Local Setup
+
+### Clone the repository
 
 ```bash
 git clone https://github.com/WendiZhang/ai-document-platform.git
-
 cd ai-document-platform
 ```
 
----
-
-## Backend
+### Backend
 
 ```bash
 cd backend
 
 python -m venv venv
-
 source venv/bin/activate
-```
 
-Install dependencies
-
-```bash
 pip install -r requirements.txt
+
+cp .env.example .env
 ```
 
----
-
-## Frontend
-
-```bash
-cd frontend
-
-npm install
-```
-
----
-
-# ⚙ Environment Variables
-
-Backend `.env`
-
-```text
-DATABASE_URL=
-
-JWT_SECRET_KEY=
-
-OPENAI_API_KEY=
-
-ACCESS_TOKEN_EXPIRE_MINUTES=60
-```
-
-Frontend `.env`
-
-```text
-VITE_API_BASE_URL=http://localhost:8000/api
-```
-
----
-
-#  Running the Application
-
-Backend
+Update the values in `.env`, then start FastAPI:
 
 ```bash
 uvicorn app.main:app --reload
 ```
 
-Frontend
+Backend:
+
+```text
+http://127.0.0.1:8000
+```
+
+API documentation:
+
+```text
+http://127.0.0.1:8000/docs
+```
+
+### Frontend
 
 ```bash
+cd frontend
+
+npm install
+cp .env.example .env
 npm run dev
 ```
 
----
+Frontend:
 
-#  Running Tests
+```text
+http://localhost:5173
+```
 
-Backend
+## Environment Variables
+
+Backend:
+
+```text
+APP_NAME
+APP_ENV
+DEBUG
+DATABASE_URL
+JWT_SECRET_KEY
+JWT_ALGORITHM
+ACCESS_TOKEN_EXPIRE_MINUTES
+OPENAI_API_KEY
+UPLOAD_DIRECTORY
+MAX_UPLOAD_SIZE_MB
+```
+
+Frontend:
+
+```text
+VITE_API_BASE_URL
+```
+
+Real environment files and production secrets are not committed to Git.
+
+## Running Tests
+
+From the backend directory:
 
 ```bash
 pytest
 ```
 
-Run a specific test
+Run a specific test file:
 
 ```bash
 pytest tests/test_chat.py
 ```
 
----
+The GitHub Actions workflow also runs the backend tests automatically before deployment.
 
-#  API Overview
+## API Overview
 
-Authentication
+### Authentication
 
-```
+```text
 POST /api/auth/register
-
 POST /api/auth/login
-
-GET /api/auth/me
+GET  /api/auth/me
 ```
 
-Documents
+### Documents
 
-```
-POST /api/documents/upload
-
-GET /api/documents
-
+```text
+POST   /api/documents/upload
+GET    /api/documents
+GET    /api/documents/{id}
 DELETE /api/documents/{id}
-
-POST /api/documents/{id}/prepare
+POST   /api/documents/{id}/prepare
 ```
 
-Chat
+### Search
 
-```
-POST /api/chat/sessions
-
-GET /api/chat/sessions
-
-POST /api/chat/sessions/{id}/messages
-
-POST /api/chat/sessions/{id}/stream
+```text
+POST /api/search/semantic
 ```
 
----
+### Chat
 
-#  Security
+```text
+POST   /api/chat/sessions
+GET    /api/chat/sessions
+GET    /api/chat/sessions/{id}/messages
+POST   /api/chat/sessions/{id}/messages
+POST   /api/chat/sessions/{id}/stream
+DELETE /api/chat/sessions/{id}
+```
 
-- JWT Authentication
+## Security
+
 - Password hashing
-- User data isolation
-- Document ownership verification
-- Protected endpoints
-- SQLAlchemy ORM protection against SQL injection
+- JWT authentication
+- Token expiration and validation
+- Protected API endpoints
+- User-specific document access
+- User-specific chat access
+- User-isolated semantic search
+- PDF and DOCX validation
+- Upload size limits
+- Randomized stored filenames
+- FastAPI and PostgreSQL restricted to localhost in production
+- Production secrets excluded from Git
+- Debug mode disabled in production
+- Nginx security headers
+- Dependency vulnerability checks
 
----
+## Monitoring and Backups
 
-#  Future Improvements
+CloudWatch monitors the EC2 instance. A CPU alarm sends a notification when CPU usage remains above the configured threshold.
 
-- Hybrid search (Vector + Keyword)
+PostgreSQL is backed up automatically once per day. Backups are compressed and uploaded to a private S3 bucket.
+
+Backups are automatically removed after 30 days.
+
+The restore process was tested using a separate PostgreSQL database to verify that the schema and application data could be recovered.
+
+## Future Improvements
+
+- Custom domain and HTTPS
+- Store uploaded documents in Amazon S3
+- Hybrid vector and keyword search
 - Reranking
-- AWS S3 file storage
-- Background task processing
+- Background document processing
 - OCR support
 - Image extraction
-- Admin dashboard
-- CI/CD with GitHub Actions
-- Docker deployment
-- AWS deployment
-
----
+- Additional application monitoring
