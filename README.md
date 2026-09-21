@@ -12,7 +12,7 @@ Application: http://16.54.70.41
 
 API Documentation: http://16.54.70.41/docs
 
-The current deployment uses HTTP. A custom domain and HTTPS are planned.
+The current deployment uses HTTP.
 
 ## Features
 
