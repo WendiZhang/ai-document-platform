@@ -6,14 +6,6 @@ Users can upload PDF and DOCX files, process documents into vector embeddings, s
 
 The application includes JWT authentication, document management, semantic search, multi-turn AI chat, streaming responses, and user-specific data access.
 
-## Live Demo
-
-Application: http://16.54.70.41
-
-API Documentation: http://16.54.70.41/docs
-
-The current deployment uses HTTP.
-
 ## Features
 
 ### Authentication
